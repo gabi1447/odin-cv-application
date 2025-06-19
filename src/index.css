@@ -47,6 +47,8 @@ button {
     background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 button:hover {
     border-color: #646cff;
@@ -87,6 +89,7 @@ button:focus-visible {
 .cv {
     min-width: 500px;
     max-width: 750px;
+    min-height: 300px;
     padding-left: 3px;
     background-color: white;
     color: black;
@@ -94,17 +97,12 @@ button:focus-visible {
 
 .cv p {
     margin: 0;
+    margin-bottom: 5px;
 }
 
 .cv-h1 {
     font-size: 2.5em;
     text-decoration: underline;
-}
-.general-information {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
 }
 
 .field {
@@ -118,4 +116,8 @@ button:focus-visible {
     min-width: 30ch;
     max-width: 35ch;
     margin-top: 3px;
+}
+
+hr {
+    width: 40ch;
 }
