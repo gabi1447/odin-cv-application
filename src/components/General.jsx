@@ -1,7 +1,7 @@
 function General({ name, email, phoneNumber, onChange, onSubmit }) {
     return (
         <form className="general-information" onSubmit={onSubmit}>
-            <label className="field">
+            <label htmlFor="name" className="field">
                 Name:{" "}
                 <input
                     className="inputField"
@@ -12,7 +12,7 @@ function General({ name, email, phoneNumber, onChange, onSubmit }) {
                 />
             </label>
             <br />
-            <label className="field">
+            <label htmlFor="email" className="field">
                 Email:{" "}
                 <input
                     className="inputField"
@@ -23,7 +23,7 @@ function General({ name, email, phoneNumber, onChange, onSubmit }) {
                 />
             </label>
             <br />
-            <label className="field">
+            <label htmlFor="phoneNumber" className="field">
                 Phone Number:{" "}
                 <input
                     className="inputField"
