@@ -6,6 +6,7 @@ function Experience({
     responsabilities,
     id,
     onChange,
+    onDelete,
 }) {
     const companyId = "companyName";
     const titleId = "title";
@@ -76,6 +77,15 @@ function Experience({
                     }}
                 ></textarea>
             </label>
+            <button
+                className="deleteButton"
+                onClick={() => {
+                    onDelete(id);
+                }}
+            >
+                Delete
+            </button>
+            <br />
         </>
     );
 }

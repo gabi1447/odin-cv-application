@@ -1,4 +1,11 @@
-function Education({ id, schoolName, title, finishedDate, onChange }) {
+function Education({
+    id,
+    schoolName,
+    title,
+    finishedDate,
+    onChange,
+    onDelete,
+}) {
     const schoolNameId = "schoolName";
     const titleId = "title";
     const finishedDateId = "finishedDate";
@@ -40,6 +47,15 @@ function Education({ id, schoolName, title, finishedDate, onChange }) {
                     }}
                 />
             </label>
+            <button
+                className="deleteButton"
+                onClick={() => {
+                    onDelete(id);
+                }}
+            >
+                Delete
+            </button>
+            <br />
         </>
     );
 }

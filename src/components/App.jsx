@@ -63,6 +63,12 @@ function App() {
         setEducationSubmitted(education);
     }
 
+    function handleEducationDelete(id) {
+        const filteredEducation = education.filter((study) => study.id !== id);
+        setEducation(filteredEducation);
+        setEducationSubmitted(filteredEducation);
+    }
+
     function addNewEducation() {
         setEducation([
             ...education,
@@ -130,6 +136,12 @@ function App() {
         setExperienceSubmitted(experience);
     }
 
+    function handleExperienceDelete(id) {
+        const filteredExperience = experience.filter((job) => job.id !== id);
+        setExperience(filteredExperience);
+        setExperienceSubmitted(filteredExperience);
+    }
+
     function addNewExperience() {
         setExperience([
             ...experience,
@@ -165,6 +177,7 @@ function App() {
                             finishedDate={study.finishedDate}
                             onChange={handleEducationChange}
                             id={study.id}
+                            onDelete={handleEducationDelete}
                         />
                     );
                 })}
@@ -183,6 +196,7 @@ function App() {
                             responsabilities={job.responsabilities}
                             id={job.id}
                             onChange={handleExperienceChange}
+                            onDelete={handleExperienceDelete}
                         />
                     );
                 })}
