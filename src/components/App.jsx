@@ -1,6 +1,7 @@
 import Form from "./Form";
 import Cv from "./Cv";
 import General from "./General";
+import { Experience, ExperienceCv } from "./Experience";
 import { Education, EducationCv } from "./Education";
 import { useState } from "react";
 
@@ -45,14 +46,14 @@ function App() {
         const field = e.target.id;
         const value = e.target.value;
         setEducation(
-            education.map((job) => {
-                if (id === job.id) {
+            education.map((study) => {
+                if (id === study.id) {
                     return {
-                        ...job,
+                        ...study,
                         [field]: value,
                     };
                 } else {
-                    return job;
+                    return study;
                 }
             })
         );
@@ -74,6 +75,75 @@ function App() {
         ]);
     }
 
+    // Work Experience Component
+    const [experience, setExperience] = useState([
+        {
+            id: crypto.randomUUID(),
+            companyName: "",
+            title: "",
+            dateStarted: "",
+            dateFinished: "",
+            responsabilities: [],
+        },
+    ]);
+
+    const [experienceSubmitted, setExperienceSubmitted] = useState([]);
+
+    function handleExperienceChange(e, id) {
+        const field = e.target.id;
+        const value = e.target.value;
+
+        if (field === "responsabilities") {
+            const arrayOfResponsabilities = value
+                .split(", ")
+                .map((word) => word.trim());
+
+            setExperience(
+                experience.map((job) => {
+                    if (job.id === id) {
+                        return {
+                            ...job,
+                            [field]: arrayOfResponsabilities,
+                        };
+                    } else {
+                        return job;
+                    }
+                })
+            );
+            return;
+        }
+        setExperience(
+            experience.map((job) => {
+                if (id === job.id) {
+                    return {
+                        ...job,
+                        [field]: value,
+                    };
+                } else {
+                    return job;
+                }
+            })
+        );
+    }
+
+    function handleExperienceSubmit() {
+        setExperienceSubmitted(experience);
+    }
+
+    function addNewExperience() {
+        setExperience([
+            ...experience,
+            {
+                id: crypto.randomUUID(),
+                companyName: "",
+                title: "",
+                dateStarted: "",
+                dateFinished: "",
+                responsabilities: [],
+            },
+        ]);
+    }
+
     return (
         <div className="app">
             <Form>
@@ -86,21 +156,39 @@ function App() {
                     onSubmit={handleGeneralSubmit}
                 />
                 <h1>Education</h1>
-                {education.map((job) => {
+                {education.map((study) => {
                     return (
                         <Education
-                            key={job.id}
-                            schoolName={job.schoolName}
-                            title={job.title}
-                            finishedDate={job.finishedDate}
+                            key={study.id}
+                            schoolName={study.schoolName}
+                            title={study.title}
+                            finishedDate={study.finishedDate}
                             onChange={handleEducationChange}
-                            id={job.id}
+                            id={study.id}
                         />
                     );
                 })}
                 <button onClick={addNewEducation}>+</button>
                 <br />
                 <button onClick={handleEducationSubmit}>Confirm</button>
+                <h1>Experience</h1>
+                {experience.map((job) => {
+                    return (
+                        <Experience
+                            key={job.id}
+                            companyName={job.companyName}
+                            title={job.title}
+                            dateStarted={job.dateStarted}
+                            dateFinished={job.dateFinished}
+                            responsabilities={job.responsabilities}
+                            id={job.id}
+                            onChange={handleExperienceChange}
+                        />
+                    );
+                })}
+                <button onClick={addNewExperience}>+</button>
+                <br />
+                <button onClick={handleExperienceSubmit}>Confirm</button>
             </Form>
             <Cv>
                 <h1 className="cv-h1">General Information</h1>
@@ -114,15 +202,32 @@ function App() {
                     <b>Phone number:</b> {generalFormDataSubmitted.phoneNumber}
                 </p>
                 <h1 className="cv-h1">Education</h1>
-                {educationSubmitted.map((job, index) => {
+                {educationSubmitted.map((study, index) => {
                     return (
                         <>
                             <EducationCv
-                                schoolName={job.schoolName}
-                                title={job.title}
-                                finishedDate={job.finishedDate}
+                                schoolName={study.schoolName}
+                                title={study.title}
+                                finishedDate={study.finishedDate}
                             />
                             {index === educationSubmitted.length - 1 ? null : (
+                                <hr />
+                            )}
+                        </>
+                    );
+                })}
+                <h1 className="cv-h1">Experience</h1>
+                {experienceSubmitted.map((job, index) => {
+                    return (
+                        <>
+                            <ExperienceCv
+                                companyName={job.companyName}
+                                title={job.title}
+                                dateStarted={job.dateStarted}
+                                dateFinished={job.dateFinished}
+                                responsabilities={job.responsabilities}
+                            />
+                            {index === experienceSubmitted.length - 1 ? null : (
                                 <hr />
                             )}
                         </>

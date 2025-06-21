@@ -5,7 +5,7 @@ function Education({ id, schoolName, title, finishedDate, onChange }) {
     return (
         <>
             <label htmlFor={schoolNameId} className="field">
-                School Name:
+                <b>School Name:</b>
                 <input
                     type="text"
                     className="inputField"
@@ -17,7 +17,7 @@ function Education({ id, schoolName, title, finishedDate, onChange }) {
                 />
             </label>
             <label htmlFor={titleId} className="field">
-                Title:
+                <b>Title:</b>
                 <input
                     type="text"
                     className="inputField"
@@ -29,7 +29,7 @@ function Education({ id, schoolName, title, finishedDate, onChange }) {
                 />
             </label>
             <label htmlFor={finishedDateId} className="field">
-                Finished Date:
+                <b>Finished Date:</b>
                 <input
                     type="date"
                     className="inputField"
