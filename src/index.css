@@ -90,6 +90,7 @@ button:focus-visible {
     min-width: 500px;
     max-width: 750px;
     min-height: 300px;
+    max-height: fit-content;
     padding-left: 3px;
     background-color: white;
     color: black;
